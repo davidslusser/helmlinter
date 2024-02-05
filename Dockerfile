@@ -15,6 +15,8 @@ RUN wget -O helm.tar.gz "$HELM_URL" && \
 
 COPY helmlinter.sh /app/helmlinter.sh
 
-WORKDIR /app
+RUN chmod +x /app/helmlinter.sh
 
-ENTRYPOINT ["./helmlinter.sh"]
+RUN cp app/helmlinter.sh /usr/bin/helmlinter
+
+ENTRYPOINT ["helmlinter"]
